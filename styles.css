@@ -1,3 +1,48 @@
 html {
-  background-color: lavender;
+  background-color: #ffffed;
+}
+
+.calculator {
+  background-color: #6ebda4;
+  border: 2px solid;
+  border-radius: 15px;
+  padding: 20px;
+  width: 400px;
+}
+
+.calculatorValues {
+  padding: 10px 20px;
+  background-color: #d9ffea;
+  border: 2px solid;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: right;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.storedValue {
+  background-color: #d9ffea;
+  font-size: 20px;
+  min-height: 32px;
+}
+
+.currentValue {
+  font-size: 40px;
+  min-height: 64px;
+}
+
+
+.calculatorButtons {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+button {
+  background-color: #6ebda4;
+  border: 2px #6ebda4 solid;
+  border-radius: 5px;
+  font-size: 20px; 
+  padding: 20px;
 }
