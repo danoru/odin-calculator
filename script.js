@@ -16,7 +16,8 @@ class Calculator {
   }
 
   appendNumber(number) {
-    this.currentNumber = number
+    if (number === "." && this.currentNumber.includes(".")) return
+    this.currentNumber = this.currentNumber.toString() + number.toString()
   }
 
   chooseOperation(operation) {
@@ -42,7 +43,6 @@ const clearButton = document.querySelector(".clearButton");
 const negativeButton = document.querySelector(".negativeButton");
 const percentButton = document.querySelector(".percentButton");
 const deleteButton = document.querySelector(".deleteButton");
-const decimalButton = document.querySelector(".decimalButton");
 const equalsButton = document.querySelector(".equalsButton");
 
 
@@ -54,3 +54,4 @@ numberButtons.forEach((button) => {
     calculator.updateDisplay()
   })
 });
+
