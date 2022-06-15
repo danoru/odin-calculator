@@ -12,7 +12,7 @@ class Calculator {
   }
 
   deleteNumber() {
-
+    this.currentNumber = this.currentNumber.toString().slice(0, -1)
   }
 
   appendNumber(number) {
@@ -21,15 +21,74 @@ class Calculator {
   }
 
   chooseOperation(operation) {
+    if (this.currentNumber === "") return
+    if (this.previousNumber !=="") {
+      this.compute()
+    }
 
+    this.operation = operation
+    this.previousNumber = this.currentNumber
+    this.currentNumber = ""
   }
 
   compute() {
+    let computation
+    const prev = parseFloat(this.previousNumber)
+    const current = parseFloat(this.currentNumber)
+    if (isNaN(prev) || isNaN(current)) return
+    switch (this.operation) {
+      case "+": 
+        computation = prev + current
+        break
+      case "-":
+        computation = prev - current
+        break
+      case "×":
+        computation = prev * current
+        break
+      case "÷":
+        computation = prev / current
+        break
+      case "%":
+        computation = current / 100
+        break
+      case "+/-":
+        computation = current * -1
+        break
+      default:
+        return
+    }
+  this.currentNumber = computation
+  this.operation = undefined
+  this.previousNumber = ""
+  }
 
+  getDisplayNumber(number) {
+    const stringNumber = number.toString()
+    const integerDigits = parseFloat(stringNumber.split(".")[0])
+    const decimalDigits = stringNumber.split(".")[1]
+    let integerDisplay 
+    if (isNaN(integerDigits)) {
+      integerDisplay = "" 
+    } else {
+      integerDisplay = integerDigits.toLocaleString("en", {
+        maximumFractionDigits: 0})
+    }
+    if (decimalDigits != null) {
+      return `${integerDisplay}.${decimalDigits}`
+    } else {
+      return integerDisplay
+    }
   }
 
   updateDisplay() {
     this.currentNumberTextElement.innerText = this.currentNumber
+    if (this.operation != null) {
+      this.previousNumberTextElement.innerText = 
+        `${this.getDisplayNumber(this.previousNumber)} ${this.operation}`
+    } else {
+      this.previousNumberTextElement.innerText = ""
+    }
   }
 };
 
@@ -55,3 +114,25 @@ numberButtons.forEach((button) => {
   })
 });
 
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.chooseOperation(button.innerText)
+    calculator.updateDisplay()
+  })
+});
+
+equalsButton.addEventListener("click", button => {
+  calculator.compute();
+  calculator.updateDisplay();
+});
+
+
+clearButton.addEventListener("click", button => {
+  calculator.clearNumber();
+  calculator.updateDisplay();
+});
+
+deleteButton.addEventListener("click", button => {
+  calculator.deleteNumber();
+  calculator.updateDisplay();
+});
