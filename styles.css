@@ -1,51 +1,60 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-weight: normal;
+}
+
 body {
   align-items: center;
   background-color: #ffffed;
   display: flex;
-  height: 40vw;
   justify-content: center;
+  margin: 0;
+  padding: 0;
 }
 
 .calculator {
+  align-content: center;
   background-color: #6ebda4;
   border: 2px solid;
   border-radius: 15px;
-  padding: 20px;
-  width: 400px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  justify-content: center;
+  margin-top: 10vh;
 }
 
-.calculatorValues {
-  padding: 10px 20px;
+.output {
+  align-items: flex-end;
   background-color: #d9ffea;
   border: 2px solid;
   border-radius: 5px;
-  margin-bottom: 20px;
-  text-align: right;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / -1;
+  justify-content: space-around;
+  padding: 10px;
   word-wrap: break-word;
   word-break: break-all;
 }
 
-.previousNumber {
-  background-color: #d9ffea;
-  font-size: 20px;
-  min-height: 32px;
+.output .previousNumber {
+  font-size: 1.5rem;
 }
 
-.currentNumber {
-  font-size: 40px;
-  min-height: 64px;
+.output .currentNumber {
+  font-size: 2.5rem;
 }
 
-.calculatorButtons {
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: repeat(4, 1fr);
+.calculator > button {
+  border: 1px black solid;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2rem; 
+  padding: 10px;
 }
 
-button {
-  background-color: #6ebda4;
-  border: 2px #6ebda4 solid;
-  border-radius: 5px;
-  font-size: 20px; 
-  padding: 20px;
+.span-two {
+ grid-column: span 2;
 }
