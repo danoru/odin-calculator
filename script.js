@@ -1,48 +1,56 @@
-let currentNum = "";
-let previousNum = "";
-let operator = "";
+class Calculator {
+  constructor(previousNumberTextElement, currentNumberTextElement) {
+    this.previousNumberTextElement = previousNumberTextElement
+    this.currentNumberTextElement = currentNumberTextElement
+    this.clearNumber()
+  }
 
-const currentDisplayNumber = document.querySelector(".currentNumber");
-const previousDisplayNumber = document.querySelector(".previousNumber");
+  clearNumber() {
+    this.previousNumber = ""
+    this.currentNumber = ""
+    this.operation = undefined
+  }
 
-const clear = document.querySelector(".clearButton");
-const backspace = document.querySelector(".deleteButton");
-const numberButtons = document.querySelector(".numberButton");
-const operatorButtons = document.querySelector(".operatorButton");
-const equals = document.querySelector(".equalsButton");
-const decimal = document.querySelector(".decimalButton");
+  deleteNumber() {
 
-numberButtons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    handleNumber(e.target.textContent);
-  });
-});
+  }
 
-function handleNumber(number) {
-  if (currentNum.length <= 11) {
-    currentNum += number;
-    currentDisplayNumber.textContent = currentNum;
-  };
+  appendNumber(number) {
+    this.currentNumber = number
+  }
+
+  chooseOperation(operation) {
+
+  }
+
+  compute() {
+
+  }
+
+  updateDisplay() {
+    this.currentNumberTextElement.innerText = this.currentNumber
+  }
 };
 
-operatorButtons.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    handleOperator(e.target.textContent);
-  });
+const previousNumberTextElement = document.querySelector(".previousNumber");
+const currentNumberTextElement = document.querySelector(".currentNumber");
+
+const numberButtons = document.querySelectorAll(".numberButton");
+const operatorButtons = document.querySelectorAll(".operatorButton");
+
+const clearButton = document.querySelector(".clearButton");
+const negativeButton = document.querySelector(".negativeButton");
+const percentButton = document.querySelector(".percentButton");
+const deleteButton = document.querySelector(".deleteButton");
+const decimalButton = document.querySelector(".decimalButton");
+const equalsButton = document.querySelector(".equalsButton");
+
+
+const calculator = new Calculator(previousNumberTextElement, currentNumberTextElement);
+
+numberButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    calculator.appendNumber(button.innerText)
+    calculator.updateDisplay()
+  })
 });
-
-function handleOperator(op) {
-  operator = op;
-  storedNum = currentNum;
-  previousDisplayNumber.textContent = storedNum + " " + operator;
-  currentNum = "";
-  currentDisplayNumber.textContent = "";
-}
-
-function calculate() {
-  previousNum = Number(previousNum);
-  currentNum = Number(currentNum);
-
-  if (operator === "+"){
-    previousNum = previousNum + currentNum;
-  }}
