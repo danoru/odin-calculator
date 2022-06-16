@@ -82,7 +82,8 @@ class Calculator {
   }
 
   updateDisplay() {
-    this.currentNumberTextElement.innerText = this.currentNumber
+    this.currentNumberTextElement.innerText =
+      this.getDisplayNumber(this.currentNumber)
     if (this.operation != null) {
       this.previousNumberTextElement.innerText = 
         `${this.getDisplayNumber(this.previousNumber)} ${this.operation}`
