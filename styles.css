@@ -23,6 +23,7 @@ body {
   grid-template-rows: minmax(120px, auto) repeat(5, 100px);
   justify-content: center;
   margin-top: 10vh;
+  padding: 10px;
 }
 
 .output {
@@ -49,12 +50,36 @@ body {
 
 .calculator > button {
   border: 1px black solid;
-  border-radius: 50%;
   cursor: pointer;
   font-size: 2rem; 
   padding: 10px;
+  opacity: .75
 }
 
-.span-two {
- grid-column: span 2;
+.calculator > button:hover {
+  opacity: 1
+}
+
+.numberButton {
+  background-color: #62afb7;
+}
+
+.operatorButton {
+  background-color: #ffec47;
+}
+
+.clearButton {
+  background-color:#274b41;
+}
+
+.deleteButton {
+  background-color:#0b5394;
+}
+
+.equalsButton {
+  background-color:#f20553;
+}
+
+.spanTwo {
+  grid-column: span 2;
 }
